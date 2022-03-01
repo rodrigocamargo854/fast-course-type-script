@@ -10,3 +10,14 @@ function logInfo(uid: Uid,item:string) {
 
 logDetails(3232,"eewe")
 logDetails("wewr","eewe")
+
+type Plataform = 'windows' | 'linux' | 'macOs'
+
+function renderPlatform(plataform : Plataform) {
+    return plataform
+}
+
+renderPlatform('linux')
+renderPlatform("macOs")
+
+
