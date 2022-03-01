@@ -31,6 +31,33 @@ enum Colors {
 }
 
 //any (not cool )
-let coisa: any 
-coisa =true;
-coisa = []
+let coisa: any;
+coisa = true;
+coisa = [];
+
+//void (retorno vazio)
+function logger(): void {
+  console.log("foo");
+}
+
+// null | undefined
+type variable = string | undefined;
+
+// never
+function error(): never {
+  throw new Error("error");
+}
+
+// object
+let cart : object
+
+cart = {
+    key: 'foo key'
+}
+
+//type inference
+//em alguns casos não é necessário explicitar  os tipos por causa da inferÇencia de tipos
+let message2 = 'mensagem definida'
+window.addEventListener("click",(e) => {
+  console.log(e.target)
+})
