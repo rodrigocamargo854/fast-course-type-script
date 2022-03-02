@@ -43,7 +43,6 @@ abstract class userAccountModel{
 const user = new Account('Rodrigo','Brasil',11,true);
 console.log(user.isLoggedin())
 console.log(user.getLoginStatus)//retorna o estado do login do usuario
-console.log(user.setUserNAme='Willian')//retorna o estado do login do usuario
-
+console.log(user.setUserNAme='Willian')//podemos setar (alterar) dados de uam variavel 
 
 

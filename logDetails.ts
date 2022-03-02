@@ -38,6 +38,8 @@ class CharAccount extends UserAccount{
         super(name,age);
         this.level = level;
         this.nickName = nickName;
+        this.name = name;
+        this.age = age;
     }
 }
 

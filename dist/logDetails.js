@@ -41,6 +41,8 @@ var CharAccount = /** @class */ (function (_super) {
         var _this = _super.call(this, name, age) || this;
         _this.level = level;
         _this.nickName = nickName;
+        _this.name = name;
+        _this.age = age;
         return _this;
     }
     return CharAccount;
