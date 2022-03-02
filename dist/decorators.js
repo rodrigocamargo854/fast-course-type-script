@@ -60,6 +60,36 @@ var API = /** @class */ (function () {
 console.log(new API());
 //!-2
 //Property decorator
+//valitaditon function
+function minLenght(lenght) {
+    return function (target, key) {
+        var val = target[key];
+        var getter = function () { return val; };
+        var setter = function (value) {
+            if (value.lenght < lenght) {
+                console.log("Error: voc\u00EA n\u00E3o pode criar " + key + " com tamanho menor que " + lenght);
+            }
+            else {
+                val = value;
+            }
+        };
+        Object.defineProperty(target, key, {
+            get: getter,
+            set: setter
+        });
+    };
+}
+var Movie = /** @class */ (function () {
+    function Movie(t) {
+        this.title = t;
+    }
+    __decorate([
+        minLenght(50)
+    ], Movie.prototype, "title", void 0);
+    return Movie;
+}());
+var movie = new Movie("wreer");
+console.log(movie.title);
 //!-3
 //Method decorator
 //!-4

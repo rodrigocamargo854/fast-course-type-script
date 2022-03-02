@@ -35,6 +35,37 @@ console.log(new API());
 //!-2
 //Property decorator
 
+//valitaditon function
+function minLenght(lenght: number){
+    return (target:any,key: string ) => {
+       let val = target[key]
+
+       const getter = () => val;
+
+       const setter = (value:string) =>{
+         if(value.lenght < lenght){
+           console.log(`Error: você não pode criar ${key} com tamanho menor que ${lenght}`)
+         }else{
+           val =value
+         }
+       }
+       Object.defineProperty(target,key,{
+         get: getter,
+         set:setter
+       })
+    }
+}
+class Movie {
+    @minLenght(50)
+  title: string;
+  constructor(t: string) {
+    this.title = t;
+  }
+}
+
+const movie = new Movie("wreer")
+console.log(movie.title);
+
 //!-3
 //Method decorator
 //!-4
