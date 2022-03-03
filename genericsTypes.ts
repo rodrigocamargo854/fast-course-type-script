@@ -28,7 +28,7 @@ const stateG = useState<boolean>();
 stateG.setState(true)
 ///////////////////////////////////////////////////////////////////////////
 // para evitar a declaração de vários tipo podemos utilziar o extends
-function useStates<S extends number | string  | boolean>() {
+function useStates<S extends number | string  | boolean >() {
     let state: S;
   
     function getState() {

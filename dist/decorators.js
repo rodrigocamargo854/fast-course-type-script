@@ -61,37 +61,69 @@ console.log(new API());
 //!-2
 //Property decorator
 //valitaditon function
-function minLenght(lenght) {
-    return function (target, key) {
-        var val = target[key];
-        var getter = function () { return val; };
-        var setter = function (value) {
-            if (value.lenght < lenght) {
-                console.log("Error: voc\u00EA n\u00E3o pode criar " + key + " com tamanho menor que " + lenght);
-            }
-            else {
-                val = value;
-            }
-        };
-        Object.defineProperty(target, key, {
-            get: getter,
-            set: setter
-        });
-    };
-}
-var Movie = /** @class */ (function () {
-    function Movie(t) {
-        this.title = t;
-    }
-    __decorate([
-        minLenght(50)
-    ], Movie.prototype, "title", void 0);
-    return Movie;
-}());
-var movie = new Movie("wreer");
-console.log(movie.title);
+// function minLenght(lenght: number) {
+//   return (target: any, key: string) => {
+//     let val = target[key];
+//     const getter = () => val;
+//     const setter = (value: string) => {
+//       if (value < lenght) {
+//         console.log(
+//           `Error: você não pode criar ${key} com tamanho menor que ${lenght}`
+//         );
+//       } else {
+//         val = value;
+//       }
+//     };
+//     Object.defineProperty(target, key, {
+//       get: getter,
+//       set: setter,
+//     });
+//   };
+// }
+// class Movie {
+//   @minLenght(3)
+//   title: string;
+//   constructor(t: string) {
+//     this.title = t;
+//   }
+// }
+// const movie = new Movie("erewwwe");
+// console.log(movie.title);
 //!-3
 //Method decorator
+//roda toda vez que o metodo for chamado
+function delay(ms) {
+    return function (target, key, descriptor) {
+        var originalMethod = descriptor.value;
+        descriptor.value = function () {
+            var _this = this;
+            var args = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                args[_i] = arguments[_i];
+            }
+            console.log("Esperando " + ms + "...");
+            setTimeout(function () {
+                originalMethod.apply(_this, args);
+            }, ms);
+            return descriptor;
+        };
+    };
+}
+var Greeter = /** @class */ (function () {
+    function Greeter(g) {
+        this.greeting = g;
+    }
+    //esperar um tempo e rodar o metodo
+    Greeter.prototype.greet = function () {
+        console.log("hello " + this.greeting);
+    };
+    __decorate([
+        delay(5000)
+    ], Greeter.prototype, "greet", null);
+    return Greeter;
+}());
+var pessoinha = new Greeter("pessoinha");
+pessoinha.greet();
 //!-4
 //Parameter decorator
 //!-5
